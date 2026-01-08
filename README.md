@@ -91,11 +91,11 @@ At the moment there are three options here. For all options, W5E5 was applied fr
 
 The actual projections for the different scenarios are given in `{scenario}.csv` files in subfolders for every RGI region or globally. In every file, all GCM projections from one scenario (e.g. `ssp370.csv`) are given as different columns, where each of the rows shows one time point.
 
-***Options within one version***
-- For OGGM v1.6.1, we provided just one option which uses W5E5, per-glacier calibrated dynamical spinup and RGI version 6.2.
-- For OGGM v1.6.3, the default option is the same as in OGGM v1.6.1 (i.e. [1.6.3/w5e5/per_glacier_spinup](1.6.3/w5e5/per_glacier_spinup)`). However, we also provide additional test projection options under just one GCM (CMIP6 MRI-ESM2-0). The differences are analysed in [this notebook TODO](todo.ipynb). 
-    - ERA5 instead of W5E5 (in [1.6.3/era5/per_glacier_spinup](1.6.3/era5/per_glacier_spinup)) <--- TODO
-    - regionally calibrated dynamical spinup instead of per_glacier_spinup ([1.6.3/w5e5/regional_spinup](1.6.3/w5e5/regional_spinup) for RGI version 6.2 and RGI version 7.0 <-- TODO work in process 
+***Glacier model 'version/choice' options***
+- For OGGM v1.6.1, we provided just one option which uses W5E5, per-glacier calibrated dynamical spinup and RGI version 6.2. 
+- For OGGM v1.6.3, the standard option is the same as in OGGM v1.6.1 (i.e. [1.6.3/w5e5/per_glacier_spinup](1.6.3/w5e5/per_glacier_spinup)). We have compared v1.6.1 and v.1.6.3 projections in [this figure](regional_glacier_volume_until2100_absolute_oggm_version_comparison_cmip6.png) and found only negligible differences (globally <0.2%, regionally <3%, in most regions <1%; [numbers from this notebook](notebooks/1.6.3/analyse_csv_files_1.6.3.ipynb)). For OGGM v1.6.3, we also provide additional regional projection output options under just one GCM (CMIP6 MRI-ESM2-0). The differences between the OGGM v1.6.3 options are analysed in [notebooks/1.6.3/analyse_csv_files_1.6.3_option_comparison_onegcm.ipynb](notebooks/1.6.3/analyse_csv_files_1.6.3_option_comparison_onegcm.ipynb) and are summarised in [this blogpost, work in process-todo](this blogpost, work in process-todo). 
+    - ERA5 instead of W5E5 (in [1.6.3/era5/per_glacier_spinup](1.6.3/era5/per_glacier_spinup)) 
+    - regionally calibrated dynamical spinup instead of per_glacier_spinup ([1.6.3/w5e5/regional_spinup](1.6.3/w5e5/regional_spinup) for RGI version 6.2 and RGI version 7.0G. 
 
 
 
@@ -104,3 +104,4 @@ The actual projections for the different scenarios are given in `{scenario}.csv`
 The file structure looks e.g. like that:
 - [1.6.3/w5e5/per_glacier_spinup/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv](1.6.3/w5e5/per_glacier_spinup/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv)
 - [1.6.3/w5e5/per_glacier_spinup/common_running_2100_2300/volume/CMIP6/2300/global/ssp126.csv](1.6.3/w5e5/per_glacier_spinup/common_running_2100_2300/volume/CMIP6/2300/global/ssp126.csv)
+- The regional projections with RGI version 7.0G output for e.g. region 01: [1.6.3/w5e5/regional_spinup/common_running_2100/volume/CMIP6/2100/RGI2000-v7.0-G-01](1.6.3/w5e5/regional_spinup/common_running_2100/volume/CMIP6/2100/RGI2000-v7.0-G-01).
