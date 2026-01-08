@@ -1,4 +1,4 @@
-# OGGM global glacier projections
+# OGGM global glacier projections  (documentation only valid for OGGM v1.6.1/2023.)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8286064.svg)](https://doi.org/10.5281/zenodo.8286064)
 

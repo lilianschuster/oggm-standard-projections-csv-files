@@ -6,6 +6,7 @@ OGGM provides what we like to call standard projections. Currently we make these
 
  ----
 When you use the aggregated or the raw per-glacier data, please cite the dataset via:
+
 **OGGM 1.6.3**: *Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2025). OGGM/oggm-standard-projections-csv-files: ... todo .. . Zenodo. https://doi.org/10.5281/zenodo.8286066*
 
 **OGGM 1.6.1**: *Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2023). OGGM/oggm-standard-projections-csv-files: v1.0 (v1.0). Zenodo. https://doi.org/10.5281/zenodo.8286065*
@@ -90,7 +91,7 @@ with xr.open_mfdataset(path + 'RGI11/run_hydro_w5e5_gcm_merged_CanESM5_ssp126_*.
 
 Note, that some glaciers will have NaN values, so if you aggregate it, you need to either only use the common running glaciers (the method used to create the aggregated csv files) or do some filling. 
 The annual glacier runoff that was computed here is the sum of annual melt and liquid precipitation on and off the glacier using a fixed-gauge with a glacier minimum reference area from year 2000 (unit: kg year-1).
-- We also have already postprocessed per-glacier annual and monthly runoff files aggregated for every basin (notebook for [2023.3](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/_run_scripts/compute_runoff_for_basins.ipynb) and [2025.6](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/compute_runoff_for_basins.ipynb), at the moment only for CMIP6 until 2100). The basin files are available at https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/CMIP6/2100/basins/ and https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/CMIP6/2100/basins/. All glaciers of a basin are aggregated in one file, and there are different files for different simulations. The files of each basin are in one subfolder, with the subfolder name being the MRBID of that basin. The basin files contain the variables: volume, area, runoff and runoff_monthly. The runoff components can not be computed for the last year, thus the last year has NaN values. 
+- We also have already postprocessed per-glacier annual and monthly runoff files aggregated for every basin (notebook for [2023.3](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/_run_scripts/compute_runoff_for_basins.ipynb) and [2025.6](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/compute_runoff_for_basins.ipynb), at the moment only for CMIP6 until 2100). The basin files are available at https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/CMIP6/2100/basins/ and https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/w5e5/per_glacier_spinup/CMIP6/2100/basins/. All glaciers of a basin are aggregated in one file, and there are different files for different simulations. The files of each basin are in one subfolder, with the subfolder name being the MRBID of that basin. The basin files contain the variables: volume, area, runoff and runoff_monthly. The runoff components can not be computed for the last year, thus the last year has NaN values. 
 
 
 **-> More details on how to handle the data (for example to estimate glacier runoff) is given in [this jupyter notebook](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/analysis_notebooks/workflow_to_analyse_per_glacier_projection_files.ipynb?flush_cache=true)** 
@@ -137,21 +138,19 @@ We have always run all projections on 1000 glaciers at once (instead of per RGI 
 To run similar projections (for example with another bias correction period), you would need to adapt the paths and the files inside of that folder to your needs. Here is a short description of the different files:
 
 - https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/0_create_slurm_command_list.ipynb
-    - creates a slurm commando list, which was then pasted into the terminal 
-
-- e.g. https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/run_with_hydro_diff_bc_methods_per_rgi_reg_2025.6.py
-    - This is the main python script, where we select the glaciers, the variables and the preprocessed glacier directory (Level 5, prepro_border=160, prepro_base_url=https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/per_glacier_spinup), do the bias correction of the GCMs, run the projections, and merge them into aggregated files of up to 1000 glaciers. If you are only interested in testing the workflow for a single GCM, do `one_gcm=True`.
-- https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/func_add.py
-    - Here are two helper functions that are used in the main run_with_hydro script. They do the actual `run_with_hydro` task on all GCMs and SSPs for each glacier individually (-> like that multiprocessing can be applied).
+    - creates a slurm commando list which runs the slurm file (next item) with different options. This list has to be pasted into the terminal  
 - https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/run_slurm_with_hydro_per_rgi_reg_2025.6.slurm
     - Here is the slurm script that was actually run from the terminal
     - to run it type in e.g.: `sbatch --array=1-1 run_slurm_with_hydro_per_rgi_reg_2025.6.slurm 06 2101 CMIP6 w5e5 per_glacier_spinup 62`
         - this runs all simulations of RGI06 (Iceland) until 2101 (or until 2100 for those GCMs ending earlier) using CMIP6, W5E5, per-glacier spinup and RGI version 62
-        - `sbatch --array=1-1 run_slurm_with_hydro_per_rgi_reg_2025.6.slurm 06 2101 CMIP6 w5e5 regional_spinup 70G`: this does the same but uses the [regional spinup RGI 70G glacier directory](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/regional_spinup/RGI70G/b_160/L5/)
     - The amount of arrays corresponds to the amount of glaciers divided by 1000. In RGI11 with 3927 glaciers, we thus need array=1-4.
-    - the complete list to run all simulations is in : https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/0_create_all_gcm_list_2300_and_slurm_command_list.ipynb
-          - there are also different options (e.g. using ERA5 instead of E5E5, regional spinup instead of per-glacier spinup, or RGI version 70G, 70C instead of RGI version 62)
-    
+    - there are also different options (e.g. using ERA5 instead of E5E5, regional spinup instead of per-glacier spinup, or RGI version 70G, 70C instead of RGI version 62)
+          - e.g. `sbatch --array=1-1 run_slurm_with_hydro_per_rgi_reg_2025.6.slurm 06 2101 CMIP6 w5e5 regional_spinup 70G` does the same as the example above but uses the [regional spinup RGI 70G glacier directory](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/regional_spinup/RGI70G/b_160/L5/)
+- https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/run_with_hydro_diff_bc_methods_per_rgi_reg_2025.6.py
+    - This is the main python script that is loaded by the slurm script. It selects the glaciers, the variables and the preprocessed glacier directory (Level 5, prepro_border=160, prepro_base_url=https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/per_glacier_spinup), do the bias correction of the GCMs, run the projections, and merge them into aggregated files of up to 1000 glaciers. If you are only interested in testing the workflow for a single GCM, do `one_gcm=True`.
+- https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/func_add.py
+    - Here are two helper functions that are used in the main `run_with_hydro_diff_*.py` python script. They do the actual `run_with_hydro` task on all GCMs and SSPs for each glacier individually (-> like that multiprocessing can be applied).
+
 - only for oggm_v16/2023.3 (not anymore necessary for oggm_v16/2025.6): https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/_run_scripts/move_files_in_oggm_folder.ipynb
     - We changed the format and the location of the original oggm output slightly. The restructuring and renaming was done in this notebook. 
     - originally all output goes into the `output` folder here, but we moved it to https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/
