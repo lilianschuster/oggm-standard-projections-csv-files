@@ -19,8 +19,8 @@ In addition, cite OGGM [(Maussion et al., 2019)](https://doi.org/10.5194/gmd-12-
 ***Model set-up***
 
 At the moment, there are projections available using 
-- OGGM v1.6.3 with the [preprocessed glacier directory version 2025.6](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5_spinup/), which you can find here:
-[https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/),
+- OGGM v1.6.3 with the [preprocessed glacier directory version 2025.6](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/per_glacier_spinup/), which you can find here:
+[https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/w5e5/per_glacier_spinup/](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/w5e5/per_glacier_spinup/),
 - OGGM v1.6.1 with the [preprocessed glacier directory version 2023.3](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2023.3/elev_bands/W5E5_spinup/), which you can find here:
 [https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/).
 
@@ -30,17 +30,17 @@ We computed all GCMs and scenarios that are currently available at the OGGM clus
 
 ***Options within one version***
 - For OGGM v1.6.1, we provided just one option which uses W5E5, per-glacier calibrated dynamical spinup and RGI version 6.2.
-- For OGGM v1.6.3, the default option is the same as in OGGM v1.6.1 (i.e. `w5e5/per_glacier_spinup`). However, we also provide additional test projection options under just one GCM (CMIP6 MRI-ESM2-0)
+- For OGGM v1.6.3, the standard option is the same as in OGGM v1.6.1 (i.e. `w5e5/per_glacier_spinup`). However, we also provide additional test projection options under just one GCM (CMIP6 MRI-ESM2-0). 
     - ERA5 instead of W5E5 (in https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/era5/per_glacier_spinup/CMIP6/2100/)
-    - regionally calibrated dynamical spinup instead of per_glacier_spinup (https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/w5e5/regional_spinup/CMIP6/2100/) for RGI version 6.2 and version 7.0
+    - regionally calibrated dynamical spinup instead of per_glacier_spinup (https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/w5e5/regional_spinup/CMIP6/2100/) for RGI version 6.2 and version 7.0G and 7.0C
 
 
 ***Data structure***
 
 In the subfolders, we give the netCDF files for different CMIP and final year options for all of the 19 RGI regions. That means, an example filepath looks as follows:
 
-- for OGGM v1.6.3: https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/w5e5/per_glacier_spinup/CMIP6/2300/RGI06/run_hydro_gcm_from_2000_ACCESS-CM2_ssp126_bc_2000_2019_endyr2301_Batch_0_1000.nc 
-- for OGGM v1.6.1: https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/CMIP6/2300/RGI06/run_hydro_gcm_from_2000_ACCESS-CM2_ssp126_bc_2000_2019_Batch_0_1000.nc 
+- for OGGM v1.6.3: https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/w5e5/per_glacier_spinup/CMIP6/2300/RGI06/run_hydro_w5e5_gcm_merged_ACCESS-CM2_ssp126_bc_2000_2019_endyr2301_Batch_0_1000.nc 
+- for OGGM v1.6.1: https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2023.3/CMIP6/2300/RGI06/run_hydro_w5e5_gcm_merged_ACCESS-CM2_ssp126_bc_2000_2019_Batch_0_1000.nc 
 (the different options are explained in detail below).
 
 Each netCDF file contains the projections from up to 1000 glaciers for a single GCM, scenario, RGI region and historical projection option from 2000 until 2100, 2101, 2299 or 2300 (for the ISIMIP3b GCM IITM-ESM and SSP370, projection only go until 2099). The timestep always corresponds to the glacier state at the beginning of the year, i.e., 2000 means 01-01-2000. We have run the `run_with_hydro` task of OGGM on a monthly basis, and thus, the following variables are included:
@@ -136,10 +136,8 @@ We have always run all projections on 1000 glaciers at once (instead of per RGI 
 
 To run similar projections (for example with another bias correction period), you would need to adapt the paths and the files inside of that folder to your needs. Here is a short description of the different files:
 
-- https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/0_create_all_gcm_list_2300_and_slurm_command_list.ipynb
-    - just creates a list with those GCMs that actually go until 2299 or until 2300, by reading /home/www/oggm/cmip6/all_gcm_list.csv and /home/www/oggm/cmip6/all_gcm_table.html
-        - saved under: https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/all_gcm_list_2300.csv
-    - in addition creates a slurm commando list, which was then pasted into the terminal 
+- https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/0_create_slurm_command_list.ipynb
+    - creates a slurm commando list, which was then pasted into the terminal 
 
 - e.g. https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16/2025.6/_run_scripts/run_with_hydro_diff_bc_methods_per_rgi_reg_2025.6.py
     - This is the main python script, where we select the glaciers, the variables and the preprocessed glacier directory (Level 5, prepro_border=160, prepro_base_url=https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/per_glacier_spinup), do the bias correction of the GCMs, run the projections, and merge them into aggregated files of up to 1000 glaciers.

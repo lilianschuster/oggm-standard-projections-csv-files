@@ -43,7 +43,7 @@ The code to create the figures above and additional regional analysis are in [no
 ***Simulation comparison***
 
 *OGGM v1.6.3 vs OGGM v1.6.1:*
-There are no visible global projection differences between OGGM v1.6.3 (gdir 2025.6) and OGGM v1.6.1 (gdir 2023.3), and only very minimal differences regionally ([see this regional figure](notebooks/1.6.3/regional_absolute_glacier_volume_until2100_version_comparison_cmip6.png)). 
+We only found negligible regional to global projection differences between OGGM v1.6.3 (gdir 2025.6) and OGGM v1.6.1 (gdir 2023.3) (globally <0.2%, regionally <3%, in most regions <1%; [see this regional figure](notebooks/1.6.3/regional_glacier_volume_until2100_absolute_oggm_version_comparison_cmip6.png); [numbers from this notebook](notebooks/1.6.3/analyse_csv_files_1.6.3.ipynb)). 
 
 *OGGM v1.6.1 vs Rounce et al. (2023):*
 In comparison to [Rounce et al. (2023)](https://doi.org/10.1126/science.abo1324), OGGM v1.6.1 creates globally more relative glacier volume loss, specifically for very warm scenarios and for RGI region 19 (Antarctic and Subantarctic). [The differences in the glacier volume loss relative to 2020 are 10% under SSP5-8.5](notebooks/1.6.1/global_glacier_volume_comparison_to_rounce_et_al_2023_ssp585.png). Globally, the glacier volume is 12% (20-30%) larger at the initial state. Additional information at [notebooks/1.6.1/compare_oggm_1.6.1_to_rounce_et_al_2023.ipynb](notebooks/1.6.1/compare_oggm_1.6.1_to_rounce_et_al_2023.ipynb)).
@@ -92,16 +92,11 @@ At the moment there are three options here. For all options, W5E5 was applied fr
 The actual projections for the different scenarios are given in `{scenario}.csv` files in subfolders for every RGI region or globally. In every file, all GCM projections from one scenario (e.g. `ssp370.csv`) are given as different columns, where each of the rows shows one time point.
 
 ***Glacier model 'version/choice' options***
-- For OGGM v1.6.1, we provided just one option which uses W5E5, per-glacier calibrated dynamical spinup and RGI version 6.2. 
-- For OGGM v1.6.3, the standard option is the same as in OGGM v1.6.1 (i.e. [1.6.3/w5e5/per_glacier_spinup](1.6.3/w5e5/per_glacier_spinup)). We have compared v1.6.1 and v.1.6.3 projections in [this figure](regional_glacier_volume_until2100_absolute_oggm_version_comparison_cmip6.png) and found only negligible differences (globally <0.2%, regionally <3%, in most regions <1%; [numbers from this notebook](notebooks/1.6.3/analyse_csv_files_1.6.3.ipynb)). For OGGM v1.6.3, we also provide additional regional projection output options under just one GCM (CMIP6 MRI-ESM2-0). The differences between the OGGM v1.6.3 options are analysed in [notebooks/1.6.3/analyse_csv_files_1.6.3_option_comparison_onegcm.ipynb](notebooks/1.6.3/analyse_csv_files_1.6.3_option_comparison_onegcm.ipynb) and are summarised in [this blogpost, work in process-todo](this blogpost, work in process-todo). 
-    - ERA5 instead of W5E5 (in [1.6.3/era5/per_glacier_spinup](1.6.3/era5/per_glacier_spinup)) 
-    - regionally calibrated dynamical spinup instead of per_glacier_spinup ([1.6.3/w5e5/regional_spinup](1.6.3/w5e5/regional_spinup) for RGI version 6.2 and RGI version 7.0G. 
-
-
+For each option (v1.6.1 and v1.6.3), we provide a standard projection option which uses W5E5, per-glacier calibrated dynamical spinup and RGI version 6.2. For OGGM v1.6.3, we updated the file structure system by specifying the baseline climate and initialisation/calibration option (i.e. [1.6.3/w5e5/per_glacier_spinup](1.6.3/w5e5/per_glacier_spinup)). We have done this to better coincide with the naming of the 2025.6 preprocessed glacier directories . 
+- In [this notebook of the OGGM cluster](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/analysis_notebooks/1.6.3_2025_6_gdirs_proj_comparisons/3_volume_projection_differences.ipynb) we also compared regional projections of a single GCM (CMIP6 MRI-ESM2-0) from different preprocessed 2025.6 glacier directories that vary in the baseline climate choice (W5E5 vs ERA5), the calibration and initialisation option (per-glacier-spinup instead of regional-spinup), and the RGI version (62, 70G, 70C). These single-GCM outputs are not available as csv-files, but are available in the cluster as per-glacier files (see [README_extended_per_glacier_files.md](README_extended_per_glacier_files.md)) or regionally aggregated in [this OGGM cluster folder](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/analysis_notebooks/1.6.3_2025_6_gdirs_proj_comparisons/).
 
 ***File structure***:
 
 The file structure looks e.g. like that:
 - [1.6.3/w5e5/per_glacier_spinup/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv](1.6.3/w5e5/per_glacier_spinup/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv)
 - [1.6.3/w5e5/per_glacier_spinup/common_running_2100_2300/volume/CMIP6/2300/global/ssp126.csv](1.6.3/w5e5/per_glacier_spinup/common_running_2100_2300/volume/CMIP6/2300/global/ssp126.csv)
-- The regional projections with RGI version 7.0G output for e.g. region 01: [1.6.3/w5e5/regional_spinup/common_running_2100/volume/CMIP6/2100/RGI2000-v7.0-G-01](1.6.3/w5e5/regional_spinup/common_running_2100/volume/CMIP6/2100/RGI2000-v7.0-G-01).
