@@ -7,9 +7,7 @@ projections realized with the default set-up of OGGM for that version. We provid
 
 This README file contains the description of the aggregated data. This description includes the experimental set-up, a brief comparison of the differences between the versions, a comparison to [Rounce et al. (2023)](https://doi.org/10.1126/science.abo1324) and information on the data structure.
 
-If you want `per-glacier` files, or other estimates than volume or area (e.g. the four components to compute glacier runoff, or the volume above sea-level), the non-aggregated raw netcdf oggm output files are available [here](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections). 
-These files are further documented in [README_extended_per_glacier_files.md](README_extended_per_glacier_files.md), where it is also explained how to rerun the projections. 
-The aggregation from the raw files to the csv files was done via [notebooks/1.6.1/aggregate_csv_files.ipynb](notebooks/1.6.1/aggregate_csv_files.ipynb) and  [notebooks/1.6.3/aggregate_csv_files.ipynb](notebooks/1.6.3/aggregate_csv_files.ipynb). 
+If you want `per-glacier` files, or other estimates than volume or area (e.g. the four components to compute glacier runoff, or the volume above sea-level), the non-aggregated raw netcdf oggm output files are available [here](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/oggm_v16). These files are further documented in [README_extended_per_glacier_files.md](README_extended_per_glacier_files.md), where it is also explained how to rerun the same projections or run projections with other preprocessed glacier directories. The aggregation from the raw files to the csv files was done via [notebooks/1.6.1/aggregate_csv_files.ipynb](notebooks/1.6.1/aggregate_csv_files.ipynb) and  [notebooks/1.6.3/aggregate_csv_files.ipynb](notebooks/1.6.3/aggregate_csv_files.ipynb). 
 
 ----
 
@@ -19,7 +17,7 @@ If you use these data (either aggregated csv or the per-glacier netcdf files), p
 
 **OGGM 1.6.1**: *Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2023). OGGM/oggm-standard-projections-csv-files: v1.0 (v1.0). Zenodo. https://doi.org/10.5281/zenodo.8286065*
 
-In addition, please cite OGGM ([Maussion et al., (2019)](https://doi.org/10.5194/gmd-12-909-2019)) and the specific OGGM version as specified in the [OGGM documentation](https://docs.oggm.org/en/stable/citing-oggm.html). 
+In addition, please cite OGGM ([Maussion et al., (2019)](https://doi.org/10.5194/gmd-12-909-2019) and the specific OGGM version as specified in the [OGGM documentation](https://docs.oggm.org/en/stable/citing-oggm.html). 
 We also recommend to refer to the CMIP option that you are using (references are linked below).
 
 ---
@@ -28,7 +26,7 @@ We also recommend to refer to the CMIP option that you are using (references are
 
 ***Experimental set-up***
 
-At the moment, there are projections available using OGGM v1.6.1 (folder: [1.6.1/](1.6.1/])) with the [preprocessed glacier directory version 2023.3](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2023.3/elev_bands/W5E5_spinup/) and OGGM v1.6.3  (folder: [1.6.3/w5e5/per_glacier_spinup/](1.6.3/w5e5/per_glacier_spinup/)), [gdir version 2025.6](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/per_glacier_spinup/)). These projections use [elevation-band flowlines](https://docs.oggm.org/en/stable/flowlines.html#elevation-bands-flowlines), include the [dynamical spinup](https://docs.oggm.org/en/latest/dynamic-spinup.html), the [informed three-step per-glacier geodetic calibration method](https://docs.oggm.org/en/latest/mass-balance-monthly.html), and use the W5E5v2.0 climate dataset [(Lange and others, 2021)](https://doi.org/10.48364/ISIMIP.342217) for calibration. The regional glacier volume matches roughly the [Farinotti et al. (2019)](https://doi.org/10.1038/s41561-019-0300-3) consensus estimate by calibrating the glen-A parameter regionally. 
+At the moment, there are projections available using OGGM v1.6.1 (folder: [1.6.1/](1.6.1/)) with the [preprocessed glacier directory version 2023.3](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2023.3/elev_bands/W5E5_spinup/) and OGGM v1.6.3  (folder: [1.6.3/w5e5/per_glacier_spinup/](1.6.3/w5e5/per_glacier_spinup/)), [gdir version 2025.6](https://cluster.klima.uni-bremen.de/~oggm/gdirs/oggm_v1.6/L3-L5_files/2025.6/elev_bands/W5E5/per_glacier_spinup/)). These projections use [elevation-band flowlines](https://docs.oggm.org/en/stable/flowlines.html#elevation-bands-flowlines), include the [dynamical spinup](https://docs.oggm.org/en/latest/dynamic-spinup.html), the [informed three-step per-glacier geodetic calibration method](https://docs.oggm.org/en/latest/mass-balance-monthly.html), and use the W5E5v2.0 climate dataset [(Lange and others, 2021)](https://doi.org/10.48364/ISIMIP.342217) for calibration. The regional glacier volume matches roughly the [Farinotti et al. (2019)](https://doi.org/10.1038/s41561-019-0300-3) consensus estimate by calibrating the glen-A parameter regionally. 
 
 |![Figure 1](notebooks/1.6.3/global_glacier_volume_until2100_common_running_2100.png)|
 |:--:| 
@@ -38,12 +36,12 @@ At the moment, there are projections available using OGGM v1.6.1 (folder: [1.6.1
 |![Figure 3](notebooks/1.6.3/global_glacier_volume_until2300_common_running_2100_2300_cmip5.png)|
 | *Figure 3: : Global glacier volume from 2000 to 2300 relative to 2020 (in %) only for CMIP5 by using the common running glaciers until 2100 and 2300. The amount of GCMs per scenario is given in the legend. The most recent OGGM version is shown (v1.6.3).* |
 
-The code to create the figures above and additional regional analysis are in [notebooks/1.6.3/analyse_csv_files_1.6.3.ipynb](notebooks/1.6.3/analyse_csv_files_1.6.3.ipynb). 
+The code to create the figures above and additional regional analysis are in [notebooks/1.6.3/analyse_csv_files.ipynb](notebooks/1.6.3/analyse_csv_files.ipynb). 
 
 ***Simulation comparison***
 
 *OGGM v1.6.3 vs OGGM v1.6.1:*
-We only found negligible regional to global projection differences between OGGM v1.6.3 (gdir 2025.6) and OGGM v1.6.1 (gdir 2023.3) (globally <0.2%, regionally <3%, in most regions <1%; [see this regional figure](notebooks/1.6.3/regional_glacier_volume_until2100_absolute_oggm_version_comparison_cmip6.png); [numbers from this notebook](notebooks/1.6.3/analyse_csv_files_1.6.3.ipynb)). 
+We only found negligible regional to global projection differences between OGGM v1.6.3 (gdir 2025.6) and OGGM v1.6.1 (gdir 2023.3) (globally <0.2%, regionally <3%, in most regions <1%; [see this regional figure](notebooks/1.6.3/regional_glacier_volume_until2100_absolute_oggm_version_comparison_cmip6.png); [numbers from this notebook](notebooks/1.6.3/analyse_csv_files.ipynb)). 
 
 *OGGM v1.6.1 vs Rounce et al. (2023):*
 In comparison to [Rounce et al. (2023)](https://doi.org/10.1126/science.abo1324), OGGM v1.6.1 creates globally more relative glacier volume loss, specifically for very warm scenarios and for RGI region 19 (Antarctic and Subantarctic). [The differences in the glacier volume loss relative to 2020 are 10% under SSP5-8.5](notebooks/1.6.1/global_glacier_volume_comparison_to_rounce_et_al_2023_ssp585.png). Globally, the glacier volume is 12% (20-30%) larger at the initial state. Additional information at [notebooks/1.6.1/compare_oggm_1.6.1_to_rounce_et_al_2023.ipynb](notebooks/1.6.1/compare_oggm_1.6.1_to_rounce_et_al_2023.ipynb)).
@@ -92,11 +90,13 @@ At the moment there are three options here. For all options, W5E5 was applied fr
 The actual projections for the different scenarios are given in `{scenario}.csv` files in subfolders for every RGI region or globally. In every file, all GCM projections from one scenario (e.g. `ssp370.csv`) are given as different columns, where each of the rows shows one time point.
 
 ***Glacier model 'version/choice' options***
-For each option (v1.6.1 and v1.6.3), we provide a standard projection option which uses W5E5, per-glacier calibrated dynamical spinup and RGI version 6.2. For OGGM v1.6.3, we updated the file structure system by specifying the baseline climate and initialisation/calibration option (i.e. [1.6.3/w5e5/per_glacier_spinup](1.6.3/w5e5/per_glacier_spinup)). We have done this to better coincide with the naming of the 2025.6 preprocessed glacier directories . 
-- In [this notebook of the OGGM cluster](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/analysis_notebooks/1.6.3_2025_6_gdirs_proj_comparisons/3_volume_projection_differences.ipynb) we also compared regional projections of a single GCM (CMIP6 MRI-ESM2-0) from different preprocessed 2025.6 glacier directories that vary in the baseline climate choice (W5E5 vs ERA5), the calibration and initialisation option (per-glacier-spinup instead of regional-spinup), and the RGI version (62, 70G, 70C). These single-GCM outputs are not available as csv-files, but are available in the cluster as per-glacier files (see [README_extended_per_glacier_files.md](README_extended_per_glacier_files.md)) or regionally aggregated in [this OGGM cluster folder](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/analysis_notebooks/1.6.3_2025_6_gdirs_proj_comparisons/).
+- For each OGGM version (v1.6.1 and v1.6.3), we provide a standard projection option which uses W5E5, per-glacier calibrated dynamical spinup and RGI version 6.2. For OGGM v1.6.3, we updated the file structure system by specifying the baseline climate and initialisation/calibration option (i.e. [1.6.3/w5e5/per_glacier_spinup](1.6.3/w5e5/per_glacier_spinup)). We have done this to better coincide with the naming of the 2025.6 preprocessed glacier directories. 
+- We also did regional projections of a single GCM (CMIP6 MRI-ESM2-0) from different preprocessed 2025.6 glacier directories that vary in the baseline climate choice (W5E5 vs ERA5), the calibration and initialisation option (per-glacier-spinup instead of regional-spinup), and the RGI version (62, 70G, 70C). These single-GCM outputs are not available as csv-files, but are available in the cluster as per-glacier files (see [README_extended_per_glacier_files.md](README_extended_per_glacier_files.md)) or regionally aggregated in [this OGGM cluster folder](https://cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/analysis_notebooks/1.6.3_2025_6_gdirs_proj_comparisons/), and analysed in [this notebook of the OGGM cluster](https://nbviewer.org/urls/cluster.klima.uni-bremen.de/~oggm/oggm-standard-projections/analysis_notebooks/1.6.3_2025_6_gdirs_proj_comparisons/3_volume_projection_differences.ipynb). 
 
 ***File structure***:
 
 The file structure looks e.g. like that:
 - [1.6.3/w5e5/per_glacier_spinup/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv](1.6.3/w5e5/per_glacier_spinup/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv)
 - [1.6.3/w5e5/per_glacier_spinup/common_running_2100_2300/volume/CMIP6/2300/global/ssp126.csv](1.6.3/w5e5/per_glacier_spinup/common_running_2100_2300/volume/CMIP6/2300/global/ssp126.csv)
+- [1.6.1/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv](1.6.1/common_running_2100/volume/CMIP5/2100/RGI01/rcp85.csv)
+
