@@ -2,7 +2,7 @@
 
 OGGM provides what we like to call standard projections. Currently we make these future CMIP forced global glacier simulations available in two different formats, raw and aggregated data. In this document the raw data is described. 
 
-**If you are only interested in regional volume or area changes (globally or per RGI region), we recommend you to use the aggregated data [README.md](https://github.com/oggm/oggm-standard-projections-csv-files).** 
+**If you are only interested in regional volume or area changes (globally or per RGI region), we recommend you to use the aggregated data [README.md](README.md).** 
 
  ----
 When you use the aggregated or the raw per-glacier data, please cite the dataset via:
