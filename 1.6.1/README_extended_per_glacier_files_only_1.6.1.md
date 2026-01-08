@@ -1,4 +1,4 @@
-# oggm-standard-projections (documentation only valid for OGGM v1.6.1/2023.)
+# oggm-standard-projections (documentation only valid for OGGM v1.6.1/2023.3)
 
 OGGM provides what we like to call standard projections. Currently we make these future CMIP forced global glacier simulations available in two different formats, raw and aggregated data. In this document the raw data is described. 
 
@@ -7,7 +7,7 @@ OGGM provides what we like to call standard projections. Currently we make these
  ----
 When you use the aggregated or the raw per-glacier data, please cite the dataset via:
 
-**OGGM 1.6.1**: *Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2023). OGGM/oggm-standard-projections-csv-files: v1.0 (v1.0). Zenodo. https://doi.org/10.5281/zenodo.8286065*
+*Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2023). OGGM/oggm-standard-projections-csv-files: v1.0 (v1.0). Zenodo. https://doi.org/10.5281/zenodo.8286065*
 
 In addition, cite OGGM [(Maussion et al., 2019)](https://doi.org/10.5194/gmd-12-909-2019) and the CMIP option that you are using (references are linked below).
 ---
