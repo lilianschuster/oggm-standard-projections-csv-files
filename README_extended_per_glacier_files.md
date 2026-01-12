@@ -7,7 +7,7 @@ OGGM provides what we like to call standard projections. Currently we make these
  ----
 When you use the aggregated or the raw per-glacier data, please cite the dataset via:
 
-**OGGM 1.6.3**: *Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2025). OGGM/oggm-standard-projections-csv-files: ... todo .. . Zenodo. https://doi.org/10.5281/zenodo.8286066*
+**OGGM 1.6.3**: *Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2026). OGGM/oggm-standard-projections-csv-files: (v1.1). Zenodo. https://doi.org/10.5281/zenodo.8286066*
 
 **OGGM 1.6.1**: *Lilian Schuster, Patrick Schmitt, Anouk Vlug, & Fabien Maussion. (2023). OGGM/oggm-standard-projections-csv-files: v1.0 (v1.0). Zenodo. https://doi.org/10.5281/zenodo.8286065*
 
